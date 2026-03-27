@@ -44,7 +44,11 @@
   </script>
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+  <link rel="apple-touch-icon" href="assets/icon.svg" />
+  <meta name="theme-color" content="#0f0b0a" />
+  <meta name="apple-mobile-web-app-title" content="Tristan Arviso" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
 
   <script>
     (function () {
@@ -56,6 +60,8 @@
     })();
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
@@ -730,6 +736,25 @@
       .about-stats .stat:nth-child(3) { border-left: none; border-top: 1px solid var(--border); grid-column: span 2; }
       .form-row { grid-template-columns: 1fr; }
       .tl-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    }
+
+    /* ── MOBILE OVERRIDES (must come after all base CSS) ── */
+    /* Fix cascade: projects + hamburger CSS landed after the 900px block, so
+       these rules repeat the responsive intent and win via order-in-cascade. */
+    @media (max-width: 900px) {
+      .hamburger          { display: flex; }
+      .projects-grid      { grid-template-columns: 1fr; }
+      #hero               { grid-template-rows: auto 72vw; }
+      .hero-photo         { min-height: 72vw; }
+      .about-img.secondary { aspect-ratio: 16/9; }
+      .project-card       { padding: 1.8rem; }
+    }
+
+    /* Hide custom cursor on touch / mobile devices */
+    @media (hover: none) and (pointer: coarse) {
+      #cursor, #cursor-ring { display: none !important; }
+      body    { cursor: auto; }
+      a, button, .tag, .gallery-item, .form-submit { cursor: pointer; }
     }
   </style>
 </head>
