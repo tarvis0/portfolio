@@ -3,7 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tristan Arviso</title>
+  <title>Tristan Arviso — CS Graduate & Founder</title>
+  <meta name="description" content="Tristan Arviso is a Diné (Navajo) Computer Science graduate from ASU bridging technology and business strategy. Co-founder of Lemongrass, AISES chapter president, IBM AI certified." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://tristan-arviso.com/" />
+  <meta property="og:title"       content="Tristan Arviso — CS Graduate & Founder" />
+  <meta property="og:description" content="Diné CS graduate from ASU. Builder, founder, and strategist bridging tech and business." />
+  <meta property="og:image"       content="https://tristan-arviso.com/assets/images/hero-portrait.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Tristan Arviso — CS Graduate & Founder" />
+  <meta name="twitter:description" content="Diné CS graduate from ASU. Builder, founder, and strategist bridging tech and business." />
+  <meta name="twitter:image"       content="https://tristan-arviso.com/assets/images/hero-portrait.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://tristan-arviso.com/" />
+
+  <!-- JSON-LD: tells Google this page is a person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tristan Arviso",
+    "url": "https://tristan-arviso.com",
+    "image": "https://tristan-arviso.com/assets/images/hero-portrait.jpg",
+    "jobTitle": "Software Engineer & Founder",
+    "description": "Diné (Navajo) Computer Science graduate from Arizona State University. Co-founder of Lemongrass, AISES chapter president, IBM AI certified.",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Arizona State University"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/tristan-arviso-221a85287/",
+      "https://github.com/tarvis0"
+    ]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>" />
 
   <script>
     (function () {
@@ -15,7 +56,7 @@
     })();
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,12 +167,22 @@
       backdrop-filter: blur(12px);
     }
 
-    /* Logo — static */
+    /* Logo — typewriter */
     .nav-logo {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text); text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.04em; text-transform: none;
+      color: var(--teal); text-decoration: none;
+    }
+    .nav-logo-cursor {
+      display: inline-block;
+      color: var(--teal);
+      margin-left: 1px;
+      animation: cursor-blink 0.75s step-end infinite;
+    }
+    @keyframes cursor-blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
     }
 
     .nav-right { display: flex; align-items: center; gap: 2.5rem; }
@@ -155,8 +206,10 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--muted); border: 1px solid var(--border);
       padding: 0.2rem 0.6rem; border-radius: 50px;
-      white-space: nowrap; transition: color 0.3s;
+      white-space: nowrap; transition: color 0.3s, border-color 0.3s;
+      cursor: none; user-select: none;
     }
+    .theme-pill:hover { border-color: var(--accent); color: var(--text); }
 
     /* ── HERO — split column: text left | portrait right ── */
     #hero {
@@ -559,6 +612,7 @@
       nav, section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
       .hero-inner { padding-left: 1.5rem; padding-right: 1.5rem; }
       .nav-links { display: none; }
+      .hamburger { display: flex; }
       #hero { grid-template-columns: 1fr; grid-template-rows: auto 55vw; }
       .hero-text { padding: 7rem 2rem 3rem; border-right: none; border-bottom: 1px solid var(--border); }
       .hero-photo { min-height: 55vw; }
@@ -570,7 +624,104 @@
       .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); margin: 0 1.5rem; }
       .tl-row { grid-template-columns: 100px 1fr; gap: 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
+    /* ── PROJECTS ── */
+    #projects { border-top: 1px solid var(--border); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .project-card {
+      background: var(--bg);
+      padding: 2.8rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+      transition: background 0.25s;
+    }
+    .project-card:hover { background: var(--card); }
+    .project-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .project-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.8rem; letter-spacing: 0.2em; color: var(--accent);
+    }
+    .project-links { display: flex; gap: 1rem; }
+    .project-link {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 700;
+      font-size: clamp(1.5rem, 2.3vw, 2rem);
+      color: var(--text); line-height: 1.15;
+    }
+    .project-desc {
+      font-size: 0.85rem; color: var(--muted);
+      line-height: 1.9; flex: 1;
+    }
+
+    /* ── MOBILE HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: none;
+      padding: 0.3rem; z-index: 200;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: var(--text);
+      transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Full-screen mobile menu overlay */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 150;
+      background: var(--bg);
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 3rem;
+      transform: translateX(100%);
+      transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+      pointer-events: none;
+      border-left: 1px solid var(--border);
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+      pointer-events: all;
+    }
+    .mobile-nav-links { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
+    .mobile-nav-links a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 10vw, 4.5rem);
+      letter-spacing: 0.03em; color: var(--text);
+      text-decoration: none; display: block; line-height: 1.1;
+      transition: color 0.2s, padding-left 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    .mobile-nav-links a:hover { color: var(--accent); padding-left: 0.5rem; }
+    .mobile-menu-footer {
+      margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── FORM STATUS ── */
+    #form-status {
+      font-size: 0.75rem; letter-spacing: 0.08em;
+      min-height: 1.2em; transition: opacity 0.3s;
+    }
+    #form-status.success { color: var(--teal); }
+    #form-status.error   { color: var(--accent); }
+
     @media (max-width: 600px) {
       .hero-bottom { flex-direction: column; align-items: flex-start; }
       .gallery-grid { grid-template-columns: 1fr; }
@@ -595,17 +746,33 @@
 
   <!-- NAV -->
   <nav id="main-nav">
-    <a href="#hero" class="nav-logo">coded by Tristan</a>
+    <a href="#hero" class="nav-logo"><span id="nav-logo-text"></span><span class="nav-logo-cursor">|</span></a>
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#timeline">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <span class="theme-pill" id="theme-pill">—</span>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-nav-links">
+      <li><a href="#about"    class="mobile-link">About</a></li>
+      <li><a href="#timeline" class="mobile-link">Experience</a></li>
+      <li><a href="#projects" class="mobile-link">Projects</a></li>
+      <li><a href="#gallery"  class="mobile-link">Gallery</a></li>
+      <li><a href="#contact"  class="mobile-link">Contact</a></li>
+    </ul>
+    <div class="mobile-menu-footer">Tristan Arviso · Phoenix, AZ</div>
+  </div>
 
   <!-- HERO: text left | portrait right -->
   <section id="hero">
@@ -642,6 +809,7 @@
         <div id="about-img" class="about-img">
           <img src="assets/images/about-photo2.jpg" alt="Tristan Arviso" class="about-photo"
                style="object-position: center center;"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="img-fallback" style="display:none">
             <div class="icon">📸</div><div>about-photo2.jpg</div>
@@ -688,6 +856,7 @@
         <div class="about-img secondary">
           <img src="assets/images/headshot.jpg" alt="Tristan Arviso" class="about-photo"
                style="object-position: center 15%;"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="img-fallback" style="display:none">
             <div class="icon">📸</div><div>headshot.jpg</div>
@@ -781,11 +950,55 @@
     </div>
   </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-index">03 — Projects</div>
+        <h2 class="section-title">What I've Built.</h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-num">01</div>
+            <div class="project-links">
+              <a href="https://asucapstonetools.com/" target="_blank" class="project-link">Live ↗</a>
+            </div>
+          </div>
+          <h3 class="project-title">SCAI Ticketing Web App</h3>
+          <p class="project-desc">Full-stack support ticketing platform built as a senior capstone for ASU's School of Computing and Augmented Intelligence. Handles real ticket submission, routing, and resolution workflows for the department — deployed to production with 99.95% uptime.</p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">SQL</span>
+            <span class="tag">AWS</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-num">02</div>
+          </div>
+          <h3 class="project-title">Lemongrass — Mobile Café</h3>
+          <p class="project-desc">Co-founded Tucson's only Native-owned mobile café and bakery alongside my step-brother. Built all digital infrastructure — operational tracking, vendor management workflows, and brand presence — as part of a $40,000-funded startup launching 2026.</p>
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Operations</span>
+            <span class="tag">Brand Strategy</span>
+            <span class="tag">Grant Writing</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- GALLERY -->
   <section id="gallery" class="geo-bg">
     <div class="container">
       <div class="section-header">
-        <div class="section-index">03 — Gallery</div>
+        <div class="section-index">04 — Gallery</div>
         <h2 class="section-title">Moments &amp; Memories.</h2>
       </div>
     </div>
@@ -793,6 +1006,7 @@
 
         <div class="gallery-item tall">
           <img src="assets/images/gallery-featured.jpg" alt="Featured" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">🖼️</div><div>gallery-featured.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">Portrait</div></div>
@@ -800,62 +1014,71 @@
 
         <div class="gallery-item">
           <img src="assets/images/gallery-graduation.jpg" alt="ASU Graduation" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">🎓</div><div>gallery-graduation.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">ASU Graduation · Dec 2025</div></div>
         </div>
 
         <div class="gallery-item">
-          <img src="assets/images/gallery-aises.jpg" alt="AISES" class="gallery-photo"
+          <img src="assets/images/gallery-aises.jpg" alt="AISES Regional Conference" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">🏆</div><div>gallery-aises.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">AISES Regional Conference · Tucson, AZ</div></div>
         </div>
 
         <div class="gallery-item">
-          <img src="assets/images/gallery-photo2.jpg" alt="" class="gallery-photo"
+          <img src="assets/images/gallery-photo2.jpg" alt="Wells Fargo ChangeMaker Summit" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">📸</div><div>gallery-photo2.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">Wells Fargo ChangeMaker Summit</div></div>
         </div>
 
         <div class="gallery-item">
-          <img src="assets/images/gallery-photo3.jpg" alt="" class="gallery-photo"
+          <img src="assets/images/gallery-photo3.jpg" alt="AISES Executive Board" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">📸</div><div>gallery-photo3.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">AISES Executive Board</div></div>
         </div>
 
         <div class="gallery-item tall">
-          <img src="assets/images/gallery-photo4.jpg" alt="" class="gallery-photo"
+          <img src="assets/images/gallery-photo4.jpg" alt="Community Assistants at W.P. Carey Center Complex" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">📸</div><div>gallery-photo4.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">Community Assistants · W.P. Carey at Center Complex</div></div>
         </div>
 
         <div class="gallery-item">
-          <img src="assets/images/gallery-photo5.jpg" alt="" class="gallery-photo"
+          <img src="assets/images/gallery-photo5.jpg" alt="AISES Chapter Event" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">📸</div><div>gallery-photo5.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">AISES Chapter Event</div></div>
         </div>
 
         <div class="gallery-item">
-          <img src="assets/images/gallery-lemongrass.jpg" alt="Lemongrass" class="gallery-photo"
+          <img src="assets/images/gallery-lemongrass.jpg" alt="Lemongrass Trailer" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">☕</div><div>gallery-lemongrass.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">Lemongrass Trailer</div></div>
         </div>
 
         <div class="gallery-item">
-          <img src="assets/images/gallery-community.jpg" alt="Community" class="gallery-photo"
+          <img src="assets/images/gallery-community.jpg" alt="AISES Regional Conference" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">🤝</div><div>gallery-community.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">AISES Regional Conference</div></div>
         </div>
 
         <div class="gallery-item">
-          <img src="assets/images/gallery-photo6.jpg" alt="" class="gallery-photo"
+          <img src="assets/images/gallery-photo6.jpg" alt="Community Assistant Bulletin Board" class="gallery-photo"
+               loading="lazy"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="gallery-placeholder" style="display:none"><div class="gicon">📸</div><div>gallery-photo6.jpg</div></div>
           <div class="gallery-overlay"><div class="gallery-caption">Community Assistant · Bulletin Board</div></div>
@@ -868,7 +1091,7 @@
   <section id="contact">
     <div class="container">
       <div class="section-header">
-        <div class="section-index">04 — Contact</div>
+        <div class="section-index">05 — Contact</div>
       </div>
       <div class="contact-inner">
         <div id="contact-left">
@@ -889,7 +1112,8 @@
           </div>
           <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="jane@company.com" required /></div>
           <div class="form-group"><label>Message</label><textarea name="message" placeholder="I'd love to connect about..." required></textarea></div>
-          <button type="submit" class="form-submit"><span>Send Message ◆</span></button>
+          <button type="submit" class="form-submit"><span id="form-submit-label">Send Message ◆</span></button>
+          <div id="form-status" aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -898,6 +1122,7 @@
   <!-- FOOTER -->
   <footer>
     <p class="footer-copy">© 2026 <span>Tristan Arnold Arviso</span> · Diné</p>
+    <span class="footer-geo"><span id="footer-loc">—</span></span>
   </footer>
 
   <!-- SCRIPTS -->
@@ -919,6 +1144,16 @@
     gsap.ticker.add(time => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
     lenis.on('scroll', ScrollTrigger.update);
+
+    // Intercept all anchor clicks and route through Lenis for smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        lenis.scrollTo(target, { duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      });
+    });
 
     // ─────────────────────────────────────────────
     // CUSTOM CURSOR
@@ -1073,7 +1308,29 @@
     gsap.set('.hero-name .hline-i',  { y: '110%' });
     gsap.set(['.hero-eyebrow', '.hero-rule', '.hero-tagline', '.hero-ctas'], { opacity: 0, y: 20 });
 
+    // ─────────────────────────────────────────────
+    // NAV LOGO TYPEWRITER
+    // ─────────────────────────────────────────────
+    function typeNavLogo() {
+      const full   = 'coded by Tristan';
+      const textEl = document.getElementById('nav-logo-text');
+      const cursor = document.querySelector('.nav-logo-cursor');
+      let i = 0;
+      const tick = setInterval(() => {
+        textEl.textContent = full.slice(0, ++i);
+        if (i === full.length) {
+          clearInterval(tick);
+          // let cursor blink for 1.8s then fade out
+          setTimeout(() => {
+            cursor.style.transition = 'opacity 0.4s';
+            cursor.style.opacity = '0';
+          }, 1800);
+        }
+      }, 75);
+    }
+
     function playHeroAnim() {
+      typeNavLogo();
       gsap.timeline()
         .to('.hero-eyebrow',         { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' })
         .to('.hero-name .hline-i',   { y: '0%', stagger: 0.12, duration: 0.95, ease: 'power4.out' }, '-=0.2')
@@ -1192,6 +1449,15 @@
       });
     });
 
+    // Projects
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0, y: 28, duration: 0.75, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+        delay: i * 0.1
+      });
+    });
+
     // Contact
     gsap.from('.contact-big', {
       opacity: 0, y: 36, duration: 0.8, ease: 'power3.out',
@@ -1229,7 +1495,75 @@
       row.addEventListener('mouseleave', () => gsap.to(row, { x: 0, duration: 0.35, ease: 'elastic.out(1, 0.5)' }));
     });
 
-    // Form submits natively to Formspree — no JS handler needed
+    // ─────────────────────────────────────────────
+    // THEME TOGGLE — click pill to manually override
+    // ─────────────────────────────────────────────
+    let manualTheme = null;
+    document.getElementById('theme-pill').addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      manualTheme = current === 'dark' ? 'light' : 'dark';
+      // Bypass the 120s body transition so the manual toggle is instant
+      document.body.style.transition = 'none';
+      document.documentElement.setAttribute('data-theme', manualTheme);
+      document.getElementById('theme-pill').textContent = manualTheme === 'light' ? 'Day' : 'Night';
+      requestAnimationFrame(() => { document.body.style.transition = ''; });
+    });
+
+    // ─────────────────────────────────────────────
+    // MOBILE MENU
+    // ─────────────────────────────────────────────
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu(open) {
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.classList.toggle('open', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    // ─────────────────────────────────────────────
+    // CONTACT FORM — fetch submit with in-page feedback
+    // ─────────────────────────────────────────────
+    const contactForm   = document.getElementById('contact-form');
+    const formStatus    = document.getElementById('form-status');
+    const submitLabel   = document.getElementById('form-submit-label');
+
+    contactForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      submitLabel.textContent = 'Sending…';
+      contactForm.querySelector('.form-submit').disabled = true;
+      formStatus.className = '';
+      formStatus.textContent = '';
+
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          formStatus.className = 'success';
+          formStatus.textContent = '◆  Message sent — I\'ll be in touch soon.';
+          contactForm.reset();
+          submitLabel.textContent = 'Send Message ◆';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        formStatus.className = 'error';
+        formStatus.textContent = '◆  Something went wrong. Try emailing me directly.';
+        submitLabel.textContent = 'Send Message ◆';
+      }
+      contactForm.querySelector('.form-submit').disabled = false;
+    });
   </script>
 </body>
 </html>
