@@ -99,7 +99,7 @@
       font-family: 'DM Sans', sans-serif;
       overflow-x: hidden;
       line-height: 1.6;
-      transition: background-color 120s linear, color 120s linear;
+      transition: background-color 0.6s ease, color 0.6s ease;
       cursor: none; /* custom cursor */
     }
     body.intro-active { overflow: hidden; }
@@ -1528,11 +1528,8 @@
     document.getElementById('theme-pill').addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       manualTheme = current === 'dark' ? 'light' : 'dark';
-      // Bypass the 120s body transition so the manual toggle is instant
-      document.body.style.transition = 'none';
       document.documentElement.setAttribute('data-theme', manualTheme);
       document.getElementById('theme-pill').textContent = manualTheme === 'light' ? 'Day' : 'Night';
-      requestAnimationFrame(() => { document.body.style.transition = ''; });
     });
 
     // ─────────────────────────────────────────────
